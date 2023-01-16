@@ -2,16 +2,27 @@ package bw.mymis.app.reivewapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaParser;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import bw.mymis.app.reivewapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityMainBinding binding;
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +35,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //binding.txtTel.setOnClickListener(listener);
         binding.txtTel.setOnClickListener(this);
         binding.txtEmail.setOnClickListener(this);
+        binding.btnPlay.setOnClickListener(this);
+        binding.btnStop.setOnClickListener(this);
+
+        // 下拉選單 設定
+        // 資料部分 先使用程式宣告 一組陣列作為選項來源
+        // layout simple_spinner_dropdown_item,  simple_spinner_item, simple_list_item1,
+        String [] items =  { "西洋歌曲", "中文-國語歌曲" , "中文-台語歌曲" ,"兒歌"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                items);
+        binding.spinngerCategory.setAdapter(adapter);
+
+
+        // 亦可將資料從 SQLite中取出 後 再提供給 spinner 顯示
+        // 請參閱官方文件
+        // https://developer.android.com/guide/topics/ui/controls/spinner?hl=zh-tw
+
+        //SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase("songdb", MODE_PRIVATE,null);
+        //Cursor cursor  = db.rawQuery("select cat_name from category", null);
+        //CursorAdapter cursorAdapter = new SimpleCursorAdapter(this, cursor );
+        //binding.spinngerCategory.setAdapter(cursorAdapter);
+        binding.spinngerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "選取項目" + items[position], Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     @Override
@@ -49,6 +94,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //geoIntent.setData(Uri.parse("geo:"+24.802957 +","+ 120.973136 ));
                 geoIntent.setData( Uri.parse("https://www.google.com/maps/place/新竹市東區中華路二段377號"));
                 startActivity(geoIntent);
+                break;
+            case R.id.btnPlay:
+                mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.q1);
+                mediaPlayer.start();
+                //mediaPlayer.stop();
+                //mediaPlayer.pause();
+                //mediaPlayer.reset();
+                //mediaPlayer.isPlaying();
+                break;
+            case R.id.btnStop:
+                // mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.q1);
+                mediaPlayer.stop();
+                //mediaPlayer.stop();
+                //mediaPlayer.pause();
+                //mediaPlayer.reset();
+                //mediaPlayer.isPlaying();
                 break;
         }
     }

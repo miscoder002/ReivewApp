@@ -10,8 +10,8 @@
         android:id="@+id/txtTel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="476dp"
         android:text="037-123456"
         android:textColor="@color/purple_700"
         android:textSize="18sp"
@@ -22,8 +22,8 @@
         android:id="@+id/txtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="480dp"
         android:text="service@gmail.com"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/txtTel"
@@ -34,9 +34,82 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:text="巨匠電腦 新竹認證中心"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/txtTel"
         app:layout_constraintTop_toBottomOf="@+id/txtTel" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text="起於音樂撥放完畢後 選擇正確答案"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="120dp"
+        android:text="播放"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/txtTel"
+        app:layout_constraintTop_toBottomOf="@+id/btnStop">
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bruno Mars  Marry Me" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="陳雷 今日風真透" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bruno Mars Lazy song" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="1dp"
+        android:text="停止"
+        app:layout_constraintStart_toEndOf="@+id/btnPlay"
+        app:layout_constraintTop_toTopOf="@+id/btnPlay" />
+
+    <Spinner
+        android:id="@+id/spinngerCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
